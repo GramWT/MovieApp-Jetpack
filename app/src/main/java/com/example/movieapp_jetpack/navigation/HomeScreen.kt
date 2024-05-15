@@ -28,6 +28,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -76,7 +77,8 @@ fun HomeScreen(navController: NavHostController) {
                     }
                 }
             )
-        }
+        },
+        containerColor = Color.Transparent
     )
 }
 
@@ -87,7 +89,7 @@ fun ItemUi(itemIndex: Int, movieList: List<Data>, navController: NavHostControll
             .wrapContentSize()
             .padding(10.dp)
             .clickable {
-
+                navController.navigate("${NavigationUtils.DetailsScreen}/${movieList[itemIndex].id}")
             },
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
@@ -144,5 +146,8 @@ fun ItemUi(itemIndex: Int, movieList: List<Data>, navController: NavHostControll
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar() {
-    TopAppBar(title = { Text(text = "Movie App") })
+    TopAppBar(title = { Text(text = "Movie App") },
+        colors = TopAppBarDefaults.largeTopAppBarColors(
+            containerColor = Color.White.copy(.4f)
+        ))
 }

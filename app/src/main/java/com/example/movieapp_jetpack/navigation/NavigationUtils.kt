@@ -4,4 +4,5 @@ object NavigationUtils {
 
     const val BannerScreen = "Banner screen"
     const val HomeScreen = "Home screen"
+    const val DetailsScreen = "Details screen"
 }

@@ -75,8 +75,8 @@ fun BannerScreen(navController: NavHostController) {
                     Color(0xFF5995EE),
                     Color(0xFF3D3535)
                 ),
-                start = Offset(Float.POSITIVE_INFINITY, 0f),
-                end = Offset(0f, Float.NEGATIVE_INFINITY)
+                start = Offset(Float.POSITIVE_INFINITY,0f),
+                end = Offset(0f, Float.POSITIVE_INFINITY)
             )
             Button(
                 onClick = { navController.navigate(NavigationUtils.HomeScreen) },
@@ -87,7 +87,7 @@ fun BannerScreen(navController: NavHostController) {
                     .border(
                         BorderStroke(
                             3.dp,
-                            Color.Black
+                            lineGradientBrush
                         ),
                         shape = RoundedCornerShape(16.dp)
                     ),
