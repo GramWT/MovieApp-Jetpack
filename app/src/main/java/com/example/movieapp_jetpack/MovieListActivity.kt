@@ -17,20 +17,17 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.movieapp_jetpack.navigation.BannerScreen
-import com.example.movieapp_jetpack.navigation.Navigation
+import com.example.movieapp_jetpack.navigation.HomeScreen
 import com.example.movieapp_jetpack.ui.theme.MovieAppJetpackTheme
-import com.example.movieapp_jetpack.viewmodel.MovieViewModel
 
-class MainActivity : ComponentActivity() {
+class MovieListActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MovieAppJetpackTheme {
                 // A surface container using the 'background' color from the theme
 
-                WindowCompat.setDecorFitsSystemWindows(window,false)
+                WindowCompat.setDecorFitsSystemWindows(window, false)
                 window.setFlags(
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
@@ -55,7 +52,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .background(lineGradientBrush)
                     ) {
-                        BannerScreen()
+                        HomeScreen()
                     }
 
                 }
@@ -65,7 +62,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting3(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hello $name!",
         modifier = modifier
@@ -74,8 +71,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun GreetingPreview3() {
     MovieAppJetpackTheme {
-        Greeting("Android")
+        Greeting3("Android")
     }
 }

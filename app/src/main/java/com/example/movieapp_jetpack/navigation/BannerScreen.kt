@@ -1,5 +1,7 @@
 package com.example.movieapp_jetpack.navigation
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,6 +25,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -30,11 +33,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.movieapp_jetpack.MovieListActivity
 import com.example.movieapp_jetpack.R
 
 @Composable
-fun BannerScreen(navController: NavHostController) {
+fun BannerScreen(navController: NavHostController? = null) {
     val modifier = Modifier
+    val context = LocalContext.current
+    val activity = context as? Activity
     Box(modifier = modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.movie),
@@ -75,11 +81,15 @@ fun BannerScreen(navController: NavHostController) {
                     Color(0xFF5995EE),
                     Color(0xFF3D3535)
                 ),
-                start = Offset(Float.POSITIVE_INFINITY,0f),
+                start = Offset(Float.POSITIVE_INFINITY, 0f),
                 end = Offset(0f, Float.POSITIVE_INFINITY)
             )
             Button(
-                onClick = { navController.navigate(NavigationUtils.HomeScreen) },
+                onClick = {
+                    navController?.navigate(NavigationUtils.HomeScreen) ?:
+                    activity?.startActivity(Intent(context,MovieListActivity::class.java))
+                    activity?.finish()
+                },
                 modifier
                     .padding(bottom = 55.dp, start = 20.dp, end = 20.dp)
                     .fillMaxWidth()

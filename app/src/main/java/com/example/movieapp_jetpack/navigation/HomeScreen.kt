@@ -2,6 +2,7 @@
 
 package com.example.movieapp_jetpack.navigation
 
+import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -49,13 +50,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.example.movieapp_jetpack.MovieDetailsActivity
 import com.example.movieapp_jetpack.models.Data
 import com.example.movieapp_jetpack.viewmodel.MovieViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(navController: NavHostController? = null) {
     val movieViewModel = viewModel<MovieViewModel>()
     val state = movieViewModel.state
     Scaffold(
@@ -105,14 +107,22 @@ fun HomeScreen(navController: NavHostController) {
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ItemUi(itemIndex: Int, movieList: List<Data>, navController: NavHostController) {
+fun ItemUi(itemIndex: Int, movieList: List<Data>, navController: NavHostController? = null) {
+    val context = LocalContext.current
+    val activity = context as? Activity
     Card(
         Modifier
             .wrapContentSize()
             .padding(10.dp)
             .clickable {
-                navController.navigate("${NavigationUtils.DetailsScreen}/${movieList[itemIndex].id}")
+                if (navController != null) {
+                    navController.navigate("${NavigationUtils.DetailsScreen}/${movieList[itemIndex].id}")
+                } else {
+                    val intent = MovieDetailsActivity.createIntent(context, movieList[itemIndex].id)
+                    activity?.startActivity(intent)
+                }
             },
         elevation = CardDefaults.cardElevation(8.dp)
     ) {

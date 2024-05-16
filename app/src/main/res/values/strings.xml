@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MovieApp-Jetpack</string>
+    <string name="title_activity_movie_details">MovieDetailsActivity</string>
+    <string name="title_activity_movie_list">MovieListActivity</string>
 </resources>
